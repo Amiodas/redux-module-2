@@ -1,10 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
-import { increament, decreament } from "./redux/features/counterSlice";
+import {
+  increment,
+  decrement,
+  incrementByValue,
+  decrementByValue,
+} from "./redux/features/counterSlice";
+import { useAppDispatch, useAppSelector } from "./redux/hook";
 
 function App() {
-  const { count } = useSelector((state) => state.counter);
-  const dispatch = useDispatch();
+  const { count } = useAppSelector((state) => state.counter);
+  const dispatch = useAppDispatch();
   return (
     <>
       <div className="h-screen w-full flex justify-center items-center pt-3 px-5">
@@ -18,16 +23,30 @@ function App() {
               </p>
             </div>
             <button
-              onClick={() => dispatch(increament())}
+              onClick={() => dispatch(increment())}
               className="btn bg-purple-600 text-white font-semibold p-2 rounded mr-2"
             >
               Increament
             </button>
             <button
-              onClick={() => dispatch(decreament())}
+              onClick={() => dispatch(decrement())}
               className="btn bg-red-600 text-white font-semibold p-2 rounded"
             >
               Decrement
+            </button>
+          </div>
+          <div className="mt-5">
+            <button
+              onClick={() => dispatch(incrementByValue(5))}
+              className="btn bg-purple-600 text-white font-semibold p-2 rounded mr-2"
+            >
+              Increament By Value
+            </button>
+            <button
+              onClick={() => dispatch(decrementByValue(5))}
+              className="btn bg-red-600 text-white font-semibold p-2 rounded"
+            >
+              Decrement By Value
             </button>
           </div>
         </div>
